@@ -38,15 +38,19 @@ def find_classes(dir):
 
 
 def make_dataset(dir, class_to_idx):
+  print(dir, class_to_idx);
+
   images = []
   dir = os.path.expanduser(dir)
   for target in tqdm(sorted(os.listdir(dir))):
     d = os.path.join(dir, target)
     if not os.path.isdir(d):
       continue
-
+    print(target)
+    
     for root, _, fnames in sorted(os.walk(d)):
       for fname in sorted(fnames):
+        print(fname)
         if is_image_file(fname):
           path = os.path.join(root, fname)
           item = (path, class_to_idx[target])
